@@ -1,1 +1,106 @@
+KUBERNETES(k8s) 
+DOCKER V/S KUBERNETES: 
+DOCKER: 
+Docker is a container platform. 
+K8S: 
+K8s is a  container orchestration platform 
+Problems with docker : 
+Problem No :1 
+1) Single Host Nature 
+As We know that Containers are Ephemeral in nature. 
+• Ephemeral means “  SHORT LIFE TIME (That can die and retrive any time)”
+Suppose there are 100 containers .If container C1 is taking lot of memory and 
+resources then container 100 is to be died because of lack of resources. 
+• This is happens because of single host nature. 
+
+
+Problem No 2: 
+2) Auto Healing: 
+• Suppose if Conatiner gets down  or killed.The application in Conatiner is not 
+accessible.Because the cont got killed .the devops engineer need to start cont 
+manually. 
+• Without users intervention the containers automatically comes up (but docker its 
+not possible) 
+• If there are 100’s of containers it is very complicated to start 100 conatiners 
+manually. 
+• So this is auto scaling that’s not supported in docker 
+Problem No 3: 
+3) Auto Scaling: 
+• Suppose there is container with 4GB RAM and 4 CPU’S  (Host resources) . 
+• The Actual users for application is 10K users , Suppose during Festival sessions 
+the taffic goes high in that case the container goes down application won’t work. 
+• This  is happens because of no auto scaling. 
+4) Enterprise Level Support: 
+By default Docker does not provide  Enterprise Level Support. 
+a) Load Balancing 
+b) Firewalls 
+c) Auto Healing 
+d) Auto scaling 
+e) API gateway 
+The above features are not supported by docker. 
+This are the Problems that can solve by the Kubernetes. 
+Single host nature: 
+• By default K8S is a clutser. 
+• Cluster: Group of nodes. 
+Master  …………… Worker nodes. 
+This can Solve problem no1 (Single host nature) 
+If cont1 is taking lot of memory and  resources it  affects cont99.The in K8s if 
+cont99 is affected by cont1 the k8s kepts that cont in different node. 
+Auto Scaling: 
+In k8s there is Yaml file .In that there is a replication set we mention number of 
+pods.K8s also supports Horizontal auto scaling( automatic scaling). 
+Auto Healing: 
+If container goes down .the K8s automatically create new container.This happens 
+Before the container goes down new container is created. 
+Enterprise level support: 
+K8s supports enterprise level support. 
+Kubernetes Architecture:  
+Components in Control Manager (Master) 
+• API SERVER 
+• ETCD 
+• SCHEDULAR 
+• CONTROLLER MANAGER 
+• CLOUD CONTROL MANAGER 
+Components in Data plane (Worker) 
+• Kubelet 
+• Kube-proxy 
+• Container-Run time 
+• POD 
+API SERVER: 
+The API Server acts as the entry point for interactions with the Kubernetes 
+cluster. It exposes the Kubernetes API, which allows users, administrators, and other 
+components to communicate with the cluster. 
+• It basically expose to external world.It takes all the requests from the outside. 
+• The central hub that exposes the Kubernetes API and processes all requests from 
+clients and other components. 
+SCHEDULER: 
+The Scheduler is responsible for placing Pods onto suitable worker nodes. It takes 
+into account factors like resource availability, constraints, and optimization goals. 
+It basically says go and Schedule this on node1 or node 2 receiving this info from API 
+server. 
+It takes request from API server and Schedule the container on nodes. 
+ETCD: 
+It stores the entire cluster data.The data is to be stored in key-value pair. 
+CONTROLLER MANAGER: 
+The Controller Manager is responsible for monitoring the state of various objects 
+in the cluster and taking corrective actions to ensure the desired state is maintained. It 
+includes several built-in controllers, such as the Replication Controller, Deployment 
+Controller, and StatefulSet Controller. 
+Basically K8s Supports auto scaling.To support auto scaling Kubernetes detect this 
+automatically and it has do something for that it has replica set. 
+CLOUD CONTOLLER MANAGER: 
+If we want to integrate cloud providers with K8S .This component is 
+responsible for that. 
+Pod - A Kubernetes pod is a collection of one or more containers, and is the smallest unit 
+of a Kubernetes application 
+Componentes in Data plane (worker node): 
+KUBELET:  
+It is responsible for ensuring the pod is always running state.if something goes 
+wrong it informs to API server in master plane (control plane). 
+KUBE-PROXY: 
+It  basically provides networking,provide IP address to each pod.It also provides 
+load balancing .  
+CONTAINER-RUN TIME: 
+A container runtime is  responsible for running containers on the worker 
+nodes
 
